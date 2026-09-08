@@ -7,7 +7,7 @@ A custom academic profile built from the OpenAI Sites starter. Warm ivory, fores
 ## Local development
 
 Use Node 22.22.0 (see `.nvmrc`), then `npm ci` and `npm run dev`.
-Build: `npm run build`. Static public output is `out/`.
+Build: `npm run build`. Static public output is `dist/client/`.
 
 ## Editing
 
