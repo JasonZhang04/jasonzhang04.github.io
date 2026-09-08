@@ -1,14 +1,16 @@
 import { ArrowDown, ArrowUpRight, CodeXml, Mail, MapPin } from 'lucide-react';
 import { profile, research, projects } from '@/lib/profile';
+import Link from 'next/link';
+import { SiteHeader } from '@/components/site-header';
 export default function Home() {
  return <>
   <a className="skip-link" href="#main">Skip to content</a>
-  <header className="site-header"><a className="wordmark" href="#about" aria-label="Chenjia Zhang, home">CZ<span>.</span></a><nav aria-label="Main navigation"><a href="#about">About</a><a href="#research">Research</a><a href="#publications">Writing</a><a href="#projects">Projects</a><a href="#contact">Contact <ArrowUpRight size={13} aria-hidden="true" /></a></nav></header>
+  <SiteHeader />
   <main id="main" className="site-grid">
    <aside className="profile-sidebar" aria-label="Profile at a glance">
-    <div className="monogram" aria-hidden="true">cz<span>·</span></div>
+    <img className="profile-portrait" src="/profile.jpeg" width={533} height={612} alt="Portrait of Chenjia Zhang" fetchPriority="high" />
     <p className="sidebar-name">{profile.name}</p><p className="sidebar-role">Undergraduate researcher<br />Johns Hopkins University</p><p className="location"><MapPin size={13} aria-hidden="true" /> Baltimore, Maryland</p>
-    <div className="sidebar-rule" /><p className="eyebrow">AT A GLANCE</p><p className="sidebar-detail">Applied Mathematics<br />& Statistics<br /><span>Computer Science</span></p><p className="sidebar-graduation">B.S. expected May 2027</p>
+    <div className="sidebar-rule" /><p className="eyebrow">AT A GLANCE</p><p className="sidebar-detail">Applied Mathematics<br />& Statistics<br /><span>Computer Science</span><span className="sidebar-minor">Minor in Visual Arts</span></p><p className="sidebar-graduation">B.S. expected May 2027</p>
     <div className="sidebar-links"><a href={`mailto:${profile.email}`}><Mail size={15} aria-hidden="true" /> Email <ArrowUpRight size={13} aria-hidden="true" /></a><a href={profile.github} target="_blank" rel="noreferrer"><CodeXml size={15} aria-hidden="true" /> GitHub <ArrowUpRight size={13} aria-hidden="true" /></a></div><p className="sidebar-note">A space for research,<br />projects, and ideas.</p>
    </aside>
    <div className="main-column">
@@ -17,12 +19,12 @@ export default function Home() {
     <section id="publications" className="content-section"><div className="section-heading"><div><p className="eyebrow">02 / WRITING</p><h2>Selected writing</h2></div></div><article className="publication"><div className="publication-meta"><span>2026</span><span>medRxiv · Preprint</span></div><h3>Deep Learning Decodes Latent ECG Signatures of Stress Cardiomyopathy</h3><p className="authors">Jooyoung Ryu, Carl Harris, <strong>Chenjia Zhang</strong>, Kirby Gong, Robert D. Stevens</p><p className="publication-note">Preprint posted January 23, 2026 · Not peer reviewed</p><a className="text-link" href="https://doi.org/10.64898/2026.01.21.26344596" target="_blank" rel="noreferrer">Read preprint <ArrowUpRight size={15} aria-hidden="true" /></a></article></section>
     <section id="projects" className="content-section"><div className="section-heading"><div><p className="eyebrow">03 / EXPLORATIONS</p><h2>Selected course projects</h2></div><span className="section-note">Learning through building</span></div><div className="project-grid">{projects.map((project, i) => <article key={project.title} className="project-card"><span className="project-number">0{i + 1}</span><p className="project-label">{project.label}</p><h3>{project.title}</h3><p className="entry-description">{project.description}</p>{project.href && <a className="text-link" href={project.href} target="_blank" rel="noreferrer">{project.linkLabel} <ArrowUpRight size={14} aria-hidden="true" /></a>}</article>)}</div></section>
     <section id="experience" className="content-section"><div className="section-heading"><div><p className="eyebrow">04 / BACKGROUND</p><h2>Education & experience</h2></div></div><div className="timeline">
-      <div className="timeline-row"><p className="timeline-date">2023–2027<span>Expected May 2027</span></p><div><h3>Johns Hopkins University</h3><p>B.S. in Applied Mathematics and Statistics, Computer Science</p><p className="timeline-detail">Whiting School of Engineering · GPA 3.93 / 4.0</p></div></div>
+      <div className="timeline-row"><p className="timeline-date">2023–2027<span>Expected May 2027</span></p><div><h3>Johns Hopkins University</h3><p>B.S. in Applied Mathematics and Statistics, Computer Science</p><p className="timeline-detail">Minor in Visual Arts · GPA 3.93 / 4.0</p></div></div>
       <div className="timeline-row"><p className="timeline-date">Current</p><div><h3>SCAI Lab</h3><p>Research with Professor Tianmin Shu</p><p className="timeline-detail">Multi-agent communication and optimization</p></div></div>
       <div className="timeline-row"><p className="timeline-date">Summer 2026–present</p><div><h3>TIRI Lab</h3><p>Research Assistant & DSAI Summer Intern</p><p className="timeline-detail">Supervised by Professor Casey Taylor</p></div></div>
       <div className="timeline-row"><p className="timeline-date">Fall 2024–Fall 2025<span>Spring 2026–present</span></p><div><h3>Computational Intensive Care Medicine Lab</h3><p>Research Assistant</p><p className="timeline-detail">Supervised by Professor Robert Stevens</p></div></div>
     </div><div className="honors"><p className="eyebrow">SELECTED HONORS</p><p>Whiting School of Engineering Dean’s List, 2023–2026<br />Rensselaer Medal Award for Math & Science, 2023</p></div></section>
-    <section id="beyond" className="beyond-section"><span className="beyond-mark" aria-hidden="true">&</span><div><p className="eyebrow">BEYOND RESEARCH</p><h2>A little more, soon.</h2><p>A corner for personal interests and life outside the lab.<br />More to come.</p></div></section>
+    <section id="beyond" className="beyond-section photography-invitation"><div><p className="eyebrow">BEYOND RESEARCH</p><h2>Through another lens.</h2><p>Photography, painting, and life outside the lab.</p><Link className="text-link" href="/photography">Explore my photography <ArrowUpRight size={15} aria-hidden="true" /></Link></div><Link href="/photography" className="photography-preview" aria-label="Explore the photography collection"><img src="/photo_01_Noir.jpeg" width={1314} height={598} loading="lazy" alt="Preview of Noir, a black-and-white streetscape under storm clouds" /></Link></section>
     <section id="contact" className="contact-section"><p className="eyebrow">LET’S CONNECT</p><h2>Continue the conversation.</h2><a href={`mailto:${profile.email}`}>{profile.email} <ArrowUpRight size={22} aria-hidden="true" /></a></section>
     <footer><span>© 2026 Chenjia Zhang</span><span>Last updated September 2026</span><a href="#about">Back to top ↑</a></footer>
    </div>

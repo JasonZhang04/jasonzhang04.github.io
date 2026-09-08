@@ -1,8 +1,8 @@
 // Draft copy: source mapping and review items in docs/CONTENT_REVIEW.md.
 export const profile = {
  name: 'Chenjia Zhang', email: 'czhan182@jh.edu', github: 'https://github.com/JasonZhang04',
- introduction: 'I’m an undergraduate at Johns Hopkins University studying Applied Mathematics and Statistics and Computer Science. My work spans machine learning for healthcare and intelligent agents.',
- researchIntro: 'I currently work with Professor Tianmin Shu in the SCAI Lab on multi-agent communication and optimization. I also work on multimodal cardiovascular prediction with Professor Robert Stevens and pregnancy-related real-world data research with Professor Casey Taylor.',
+ introduction: 'I’m a rising senior at Johns Hopkins University studying Applied Mathematics & Statistics and Computer Science with a minor in Visual Arts. My work spans machine learning for healthcare and intelligent agents. Outside of research, I am interested in various art forms, including photography, watercolor, and oil painting. I also really enjoy playing tennis, biking, basketball, and a variety of other sports.',
+ researchIntro: 'I am very fortunate to work with professors from various disciplines on a wide range of research projects at Hopkins. Currently, I work with Professor Tianmin Shu in the SCAI Lab on multi-agent communication and optimization. I also work on multimodal cardiovascular prediction with Professor Robert Stevens in the LCICM lab and pregnancy-related real-world data research with Professor Casey Taylor in the TIRI Lab.',
 };
 export const research = [
  { id: 'multi-agent', number: '01', category: 'MULTI-AGENT SYSTEMS', title: 'Communication & optimization', status: 'Ongoing', lab: 'SCAI Lab · Professor Tianmin Shu', description: 'Current research focuses on communication and optimization in multi-agent systems.', tags: ['Multi-agent communication', 'Optimization'] },
@@ -14,4 +14,5 @@ export const projects = [
  { title: 'Embodied Pragmatic Program Synthesis', label: 'Machine Social Intelligence · Spring 2026', description: 'A neuro-symbolic approach to personalized instruction following, using an auditable Common Ground Model and synthetic VirtualHome interactions.', href: 'https://github.com/JasonZhang04/EPPS', linkLabel: 'Code on GitHub' },
  { title: 'Goal-image alignment with vision-language models', label: 'Robot Learning · Spring 2026', description: 'A modular scene-grounding and action-planning pipeline in PyBullet, with controlled ablations to examine perception and planning failures.' },
  { title: 'Temporal stability in video perception', label: 'Learning-Based Vision · Spring 2026', description: 'Studied stability and accuracy trade-offs in pose estimation and detection. Led the athletic-video track on PennAction, including identity tracking and temporal metrics.' },
+ { title: 'Augmented Reality Drawing Studio', label: 'Augmented Reality · Fall 2025', description: 'Developed a WebXR-based AR drawing studio on Meta Quest 3S, enabling real-time 3D spatial artwork creation with physics-based interactions. Accepted to Hopkins PAVA Accelerator Program', href: 'https://github.com/JasonZhang04/Augmented-Reality-Drawing-Studio', linkLabel: 'Code on GitHub' },
 ];
