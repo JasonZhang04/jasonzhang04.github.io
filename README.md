@@ -36,3 +36,19 @@ Review provenance and unresolved questions in `../outputs/website/content-review
 The first delivery is intended for private review, with search indexing disabled. Public release, any access changes, a custom domain, and a downloadable CV are later user-controlled steps. Update the metadata origin and robots directives when moving to an approved public domain.
 
 No external fonts, analytics, backend, forms, or data storage are required.
+
+## Local edits, version control, and hosting
+
+The website has two distinct copies: these editable local source files and the last published private site at https://chenjia-zhang.jhu.chatgpt.site. Saving a local file does not update the published copy.
+
+`npm run dev` gives immediate local previews; `npm run build` produces a static site in `dist/client/`. Cross-page links intentionally use ordinary HTML anchors. The build script adds `/photography/` as `photography/index.html`, so navigation works on ordinary static hosts without client routing or extension-rewrite rules. The build fails if the gallery or homepage link is missing. Serve the built folder over HTTP; do not open the HTML directly with `file://`.
+
+GitHub stores the source and version history. This project already has a separate Git repository rooted at `website/`; connect that repository to GitHub instead of uploading the parent PhD workspace. Keep package-lock.json, code, and public assets. node_modules, build output, environment files, and credentials are ignored.
+
+For a Git-connected host, the workflow is edit → commit → push → automatic build → live update. Merely creating a GitHub repository does not enable hosting or automatic updates.
+
+A private GitHub repo can connect to Cloudflare Pages. Build command: `npm run build`; output directory: `dist/client`; Node version: 22.22.0; repository root: the contents of this website folder. Source privacy and website visibility are separate settings; establish the intended audience before creating a public deployment. GitHub Pages is another option; private-repo availability depends on the GitHub plan, and a repository-subpath deployment needs additional base-path configuration. These are setup notes, not a configured integration.
+
+Verified documentation, 2026-09-08:
+- https://developers.cloudflare.com/pages/get-started/git-integration/
+- https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages

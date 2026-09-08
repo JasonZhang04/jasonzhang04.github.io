@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { ArrowLeft, ArrowDown } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import { Photograph } from '@/components/photograph';
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Photography | Chenjia Zhang',
     description: 'A selection of black-and-white photographs by Chenjia Zhang.',
-    url: `${origin}/photography`, type: 'website',
+    url: `${origin}/photography/`, type: 'website',
     images: [{ url: `${origin}${photographs[0].src}`, width: photographs[0].width, height: photographs[0].height, alt: photographs[0].alt }],
   },
   twitter: {
@@ -40,7 +39,7 @@ export default function PhotographyPage() {
         {photographs.map((photo, index) => <Photograph key={photo.id} photo={photo} number={index + 1} total={photographs.length} />)}
       </div>
       <section className="photography-end"><span className="end-mark" aria-hidden="true">—</span><p>End of this collection</p>
-        <Link className="text-link" href="/#beyond"><ArrowLeft size={14} aria-hidden="true" /> Back to the academic profile</Link>
+        <a className="text-link" href="/#beyond"><ArrowLeft size={14} aria-hidden="true" /> Back to the academic profile</a>
       </section>
       <footer><span>© 2026 Chenjia Zhang · All photographs by me.</span><a href="#photography-main">Back to top ↑</a></footer>
     </main>
