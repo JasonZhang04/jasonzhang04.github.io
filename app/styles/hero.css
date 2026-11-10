@@ -1,0 +1,97 @@
+.hero {
+  display: grid;
+  /* The right column is exactly 720px at full width: a whole 4x of the 180px scene. */
+  grid-template-columns: minmax(0, 352px) minmax(0, 1fr);
+  gap: var(--space-7);
+  align-items: center;
+  padding-block: var(--space-6) var(--space-7);
+}
+.hero-copy { min-width: 0; }
+.hero h1 { margin-block: var(--space-4) var(--space-5); }
+.hero-tagline { font-size: 22px; font-weight: 500; line-height: 1.3; letter-spacing: -0.015em; }
+.hero-tagline em { font-style: normal; color: var(--accent); white-space: nowrap; }
+.hero-summary { margin-top: var(--space-2); color: var(--muted); }
+.hero-status { display: grid; gap: var(--space-1); margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid var(--hairline); }
+.hero-status div { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: var(--space-2); align-items: baseline; }
+.hero-status dt { color: var(--accent); }
+.hero-status dd { font-size: 14px; line-height: 1.5; }
+.hero-links { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-5); }
+.hero-links .button-primary { flex: 1 0 100%; justify-content: space-between; }
+.hero-links .button:not(.button-primary) { flex: 1 0 auto; justify-content: center; }
+
+:root[data-theme='dark'] .hero h1 { text-shadow: 0 0 16px rgba(89, 192, 202, 0.25); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .hero h1 { text-shadow: 0 0 16px rgba(89, 192, 202, 0.25); } }
+
+/* The scene. Default sizes match the integer scale, so loading never shifts the layout. */
+.night-lab { --scene-w: min(100%, 720px); min-width: 0; display: grid; justify-items: end; }
+.night-lab-stage {
+  position: relative;
+  width: var(--scene-w);
+  aspect-ratio: 3 / 2;
+  line-height: 0;
+  /* Light theme: a framed window on the page, 1 logical pixel of S0. */
+  box-shadow: 0 0 0 var(--scene-px, 4px) #050708;
+}
+:root[data-theme='dark'] .night-lab-stage { box-shadow: none; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .night-lab-stage { box-shadow: none; } }
+.night-lab-poster, .night-lab-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  image-rendering: pixelated;
+}
+.night-lab-canvas { visibility: hidden; }
+.night-lab.is-live .night-lab-canvas { visibility: visible; }
+.night-lab.is-live .night-lab-poster { visibility: hidden; }
+:root:not(.js) .night-lab-canvas { display: none; }
+.night-lab-caption { width: var(--scene-w); margin-top: var(--space-4); color: var(--muted); text-align: right; line-height: 1.5; }
+
+.night-lab-hotspots { position: absolute; inset: 0; }
+.hotspot { position: absolute; display: block; }
+.hotspot:focus-visible { outline-offset: 0; }
+.hotspot-label {
+  position: absolute; left: 50%; top: 0; transform: translate(-50%, calc(-100% - 2px));
+  padding: 2px 6px; white-space: nowrap;
+  background: #050708; color: #A6F4F4; border: 1px solid #1F6E78;
+  opacity: 0; pointer-events: none; transition: opacity 150ms var(--ease);
+}
+.hotspot:hover .hotspot-label, .hotspot:focus-visible .hotspot-label { opacity: 1; }
+
+.scene-hit { position: absolute; display: none; min-width: 24px; min-height: 24px; }
+:root.js .night-lab.is-live .scene-hit { display: block; }
+.scene-hit:focus-visible { outline-offset: 0; }
+.scene-bubble {
+  position: absolute; z-index: 3; left: 0; top: 0;
+  padding: 2px 8px; white-space: nowrap;
+  background: #F0F1F2; color: #0E191C; border: 1px solid #050708;
+  transform: translate(-50%, calc(-100% - 6px));
+}
+.scene-bubble[hidden] { display: none; }
+.scene-bubble::after {
+  content: ''; position: absolute; left: 50%; bottom: -5px; width: 4px; height: 4px;
+  margin-left: -2px; background: #F0F1F2; box-shadow: 0 0 0 1px #050708;
+}
+.scene-bubble-link a { color: #17656E; font-weight: 500; text-decoration: underline; }
+
+/* Below full width the scene holds a whole 3x, so it never drops to a small 2x beside the text. */
+@media (max-width: 1215px) {
+  .hero { grid-template-columns: minmax(0, 1fr) 540px; }
+  .night-lab { --scene-w: 540px; }
+}
+@media (max-width: 1020px) {
+  .night-lab { --scene-w: min(100%, 720px); }
+  .hero { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); padding-top: var(--space-4); }
+  .hero h1 br { display: none; }
+  .hero-links .button-primary { flex: 0 1 auto; }
+  .hero-links .button:not(.button-primary) { flex: 0 1 auto; }
+  /* Nearly full-bleed: use the whole viewport width to reach the next integer scale. */
+  .night-lab { margin-inline: calc(var(--gutter) * -1); justify-items: center; }
+  .night-lab-caption { padding-inline: var(--space-2); text-align: center; }
+}
+@media (max-width: 640px) {
+  .night-lab { --scene-w: min(100%, 360px); }
+  .hero h1 { font-size: calc(var(--cell-2) / var(--pixel-grid)); }
+  .hero h1 br { display: inline; }
+  .hero-tagline { font-size: 20px; }
+  .hero-tagline em { white-space: normal; }
+  .hero-links .button-primary { flex: 1 0 100%; }
+  .hero-links .button:not(.button-primary) { flex: 1 0 auto; }
+}

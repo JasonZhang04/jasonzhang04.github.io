@@ -1,0 +1,49 @@
+/* Page tokens: two neutrals plus one cyan accent. No other colours appear in page UI. */
+@font-face { font-family: 'Geist Pixel'; src: url('/fonts/GeistPixel-Square.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Geist'; src: url('/fonts/Geist-Variable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Geist Mono'; src: url('/fonts/GeistMono-Variable.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+
+:root {
+  --bg: #F1F3F3; --surface: #E5E9E9; --text: #0E191C; --muted: #4C5D61; --hairline: #D2D9DA; --accent: #17656E;
+  --rim: 0;
+  color-scheme: light;
+
+  --font-pixel: 'Geist Pixel', 'Geist Mono', ui-monospace, monospace;
+  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Geist Pixel is drawn on a 38-unit grid, so glyphs are crisp only when
+     font-size = n / 0.038. The boot script in app/layout.tsx rounds each cell to whole
+     device pixels. These are the fallbacks when JavaScript does not run. */
+  --pixel-grid: 0.038;
+  --u: 2px;
+  --cell-1: 1px;
+  --cell-2: 2px;
+  --cell-3: 3px;
+  --cell-h2: 1px;
+
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
+  --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px;
+  --wide: 1120px;
+  --text-col: 680px;
+  --gutter: 48px;
+  --nav-h: 64px;
+  --ease: cubic-bezier(.2, .6, .3, 1);
+}
+
+@media (min-resolution: 2dppx) { :root { --cell-h2: 1.5px; } }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0E191C; --surface: #152226; --text: #E4EAEB; --muted: #8FA2A6; --hairline: #24353A; --accent: #59C0CA;
+    --rim: 1;
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --bg: #0E191C; --surface: #152226; --text: #E4EAEB; --muted: #8FA2A6; --hairline: #24353A; --accent: #59C0CA;
+  --rim: 1;
+  color-scheme: dark;
+}
+
+@media (max-width: 640px) { :root { --gutter: 24px; --nav-h: 56px; } }

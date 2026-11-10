@@ -1,0 +1,52 @@
+.site-nav {
+  position: sticky; top: 0; z-index: 30;
+  background: var(--bg);
+  border-bottom: 1px solid transparent;
+  transition: border-color 150ms var(--ease);
+}
+.site-nav.is-scrolled { border-bottom-color: var(--hairline); }
+.site-nav-inner {
+  display: flex; align-items: center; gap: var(--space-5);
+  max-width: calc(var(--wide) + 2 * var(--gutter)); min-height: var(--nav-h);
+  margin-inline: auto; padding-inline: var(--gutter);
+}
+.wordmark {
+  margin-right: auto;
+  font-family: var(--font-pixel);
+  font-size: calc(var(--cell-1) / var(--pixel-grid));
+  line-height: 1; white-space: nowrap;
+}
+.wordmark:hover { color: var(--accent); }
+.site-menu { display: flex; align-items: center; gap: var(--space-5); font-size: 15px; }
+.site-menu a { position: relative; padding-block: var(--space-1); }
+.site-menu a:hover { color: var(--accent); }
+.site-menu a[aria-current='page'] { color: var(--accent); box-shadow: 0 2px 0 var(--accent); }
+
+.nav-toggle, .theme-toggle { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; min-height: 40px; }
+.nav-toggle { display: none; gap: var(--space-2); font-size: 15px; padding-inline: var(--space-2); }
+.nav-toggle:hover, .theme-toggle:hover { color: var(--accent); }
+.theme-toggle .pixel-icon { width: calc(16 * var(--cell-1)); height: calc(16 * var(--cell-1)); }
+.icon-when-dark { display: none; }
+:root[data-theme='dark'] .icon-when-dark { display: block; }
+:root[data-theme='dark'] .icon-when-light { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .icon-when-dark { display: block; }
+  :root:not([data-theme='light']) .icon-when-light { display: none; }
+}
+/* Without JavaScript the theme follows the system and no toggle is offered. */
+:root:not(.js) .theme-toggle { display: none; }
+
+@media (max-width: 960px) {
+  .site-nav-inner { flex-wrap: wrap; gap: 0 var(--space-3); }
+  :root.js .nav-toggle { display: inline-flex; }
+  .theme-toggle { order: 2; }
+  .site-menu { order: 3; width: 100%; flex-wrap: wrap; gap: 0 var(--space-5); padding-bottom: var(--space-3); }
+  :root.js .site-menu:not(.is-open) { display: none; }
+  :root.js .site-menu { flex-direction: column; align-items: flex-start; }
+  :root.js .site-menu a { width: 100%; min-height: 44px; padding-block: var(--space-2); }
+}
+
+/* Very narrow phones: the menu button keeps its name for screen readers but shows only its icon. */
+@media (max-width: 360px) {
+  .nav-toggle span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}

@@ -1,0 +1,37 @@
+.pub-year { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: var(--space-5); padding-top: var(--space-5); border-top: 1px solid var(--hairline); }
+.pub-year-label { color: var(--accent); padding-top: 2px; }
+.pub { min-width: 0; }
+.pub-list { display: grid; gap: var(--space-6); min-width: 0; }
+.pub + .pub { padding-top: var(--space-6); border-top: 1px solid var(--hairline); }
+.footnote { margin-top: var(--space-5); font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; color: var(--muted); }
+.pub-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-5); align-items: start; }
+.pub h3 { margin-top: var(--space-2); font-size: 24px; max-width: 28em; }
+.pub-authors { margin-top: var(--space-2); color: var(--muted); }
+.pub-authors strong { color: var(--text); }
+.pub-note { margin-top: var(--space-1); color: var(--muted); }
+.pub-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-5); }
+.copy-done { display: none; }
+.copy-button.is-copied { border-color: var(--accent); color: var(--accent); }
+.copy-button.is-copied .copy-done { display: block; }
+.copy-button.is-copied .copy-idle { display: none; }
+:root:not(.js) .copy-button { display: none; }
+
+.disclosure { margin-top: var(--space-3); border-top: 1px solid var(--hairline); }
+.disclosure:first-of-type { margin-top: var(--space-5); }
+.disclosure + .disclosure { margin-top: 0; }
+.disclosure:last-of-type { border-bottom: 1px solid var(--hairline); }
+.disclosure summary { display: flex; justify-content: space-between; align-items: center; padding-block: var(--space-3); cursor: pointer; list-style: none; color: var(--text); }
+.disclosure summary::-webkit-details-marker { display: none; }
+.disclosure summary::after { content: '+'; color: var(--accent); }
+.disclosure[open] summary::after { content: '\2013'; }
+.disclosure summary:hover { color: var(--accent); }
+.disclosure-body { display: grid; gap: var(--space-3); padding-bottom: var(--space-4); max-width: var(--text-col); color: var(--muted); font-size: 16px; line-height: 1.6; }
+.disclosure-body strong { color: var(--text); }
+.disclosure-note { color: var(--muted); }
+.disclosure pre { overflow-x: auto; padding: var(--space-3); background: var(--surface); border-radius: 2px; color: var(--text); font-family: var(--font-mono); font-size: 13px; line-height: 1.5; }
+
+@media (max-width: 760px) {
+  .pub-year { grid-template-columns: minmax(0, 1fr); gap: var(--space-2); }
+  .pub-head { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
+  .pub h3 { font-size: 21px; }
+}

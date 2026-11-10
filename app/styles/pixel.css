@@ -1,0 +1,51 @@
+/* Sprite atlas: 4 frames across, two rows per object. Row 2 of each pair adds a dark-mode rim. */
+.pixel-object {
+  --frame: 0;
+  display: block; flex: none;
+  width: calc(48 * var(--u)); height: calc(48 * var(--u));
+  background-image: url('/pixel/objects.png');
+  background-repeat: no-repeat;
+  background-size: calc(192 * var(--u)) calc(96 * var(--atlas-count, 19) * var(--u));
+  background-position: calc(var(--frame) * -48 * var(--u)) calc((var(--row) * 2 + var(--rim)) * -48 * var(--u));
+  image-rendering: pixelated;
+}
+@keyframes object-play {
+  from { background-position-x: calc(-48 * var(--u)); }
+  to { background-position-x: calc(-192 * var(--u)); }
+}
+.card:hover .pixel-object, .card:focus-within .pixel-object, .pub:hover .pixel-object, .hobbies li:hover .pixel-object { animation: object-play 480ms steps(3, end) 1; }
+
+/* ECG divider: 1-logical-pixel trace with a single accent beat. Draws once, in steps. */
+.ecg-divider {
+  display: flex; align-items: flex-end;
+  width: 100%; max-width: calc(var(--wide) + 2 * var(--gutter));
+  margin: var(--space-9) auto; padding-inline: var(--gutter);
+  height: calc(14 * var(--u));
+  color: var(--accent);
+}
+.ecg-flat { flex: 1 1 0; height: var(--u); margin-bottom: calc(3 * var(--u)); background: var(--hairline); }
+.ecg-beat { width: calc(26 * var(--u)); height: calc(14 * var(--u)); flex: none; max-width: none; }
+:root.js .ecg-divider { clip-path: inset(0 100% 0 0); }
+:root.js .ecg-divider.is-visible { clip-path: inset(0 0 0 0); animation: ecg-draw 600ms steps(16, end) 1; }
+@keyframes ecg-draw { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@media (prefers-reduced-motion: reduce) { :root.js .ecg-divider { clip-path: none; } }
+@media (max-width: 640px) { .ecg-divider { margin-block: var(--space-8); } }
+
+/* About portrait: a 176 x 237 monochrome illustration shown at 264px. That is exactly
+   3 device pixels per pixel on 2x screens; the boot script adds .crisp-portrait wherever the
+   scale lands on whole device pixels, and other screens scale it smoothly instead.
+   The photo layer mirrors CROP in pixel-src/mono_portrait.py so both images line up exactly. */
+.mono-portrait { position: relative; display: block; width: 264px; max-width: 100%; aspect-ratio: 176 / 237; border-bottom: 1px solid var(--hairline); cursor: zoom-in; }
+.portrait-art { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: auto; transition: opacity 200ms var(--ease); }
+:root.crisp-portrait .portrait-art { image-rendering: pixelated; }
+.portrait-for-dark { display: none; }
+:root[data-theme='dark'] .portrait-for-dark { display: block; }
+:root[data-theme='dark'] .portrait-for-light { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .portrait-for-dark { display: block; }
+  :root:not([data-theme='light']) .portrait-for-light { display: none; }
+}
+.portrait-photo { position: absolute; inset: 0; overflow: hidden; background: #fff; opacity: 0; transition: opacity 200ms var(--ease); }
+.portrait-photo img { position: absolute; max-width: none; width: calc(533 / 368 * 100%); left: calc(-88 / 368 * 100%); top: calc(-56 / 496 * 100%); }
+.mono-portrait:hover .portrait-photo, .mono-portrait:focus .portrait-photo { opacity: 1; }
+.mono-portrait:hover .portrait-art, .mono-portrait:focus .portrait-art { opacity: 0; }

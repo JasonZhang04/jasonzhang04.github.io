@@ -1,0 +1,55 @@
+.gallery-intro { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: var(--space-5) var(--space-7); padding-block: var(--space-8) var(--space-7); }
+.gallery-intro h1 { margin-block: var(--space-3); }
+.gallery-intro .accent { color: var(--accent); }
+.gallery-subtitle { font-size: 20px; font-weight: 500; color: var(--muted); letter-spacing: -0.01em; }
+.gallery-note { display: grid; justify-items: start; gap: var(--space-3); }
+.gallery-note p { color: var(--muted); }
+.gallery-collection { display: flex; flex-direction: column; gap: var(--space-9); }
+.photograph { min-width: 0; scroll-margin-top: calc(var(--nav-h) + var(--space-4)); }
+.photograph-wide { width: 100%; }
+.photograph-left { width: 77%; align-self: flex-start; }
+.photograph-right { width: 68%; align-self: flex-end; }
+.photograph-closing { width: 90%; align-self: center; }
+.photo-trigger { position: relative; display: block; cursor: zoom-in; }
+.photo-trigger > img { width: 100%; }
+.photo-expand {
+  position: absolute; right: var(--space-3); bottom: var(--space-3);
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  background: #050708; color: #F0F1F2;
+  font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em;
+  opacity: 0; transition: opacity 150ms var(--ease);
+}
+.photo-trigger:hover .photo-expand, .photo-trigger:focus-visible .photo-expand { opacity: 1; }
+@media (hover: none) { .photo-expand { opacity: 1; font-size: 0; gap: 0; } }
+.photograph figcaption { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); margin-top: var(--space-3); padding-top: var(--space-2); border-top: 1px solid var(--hairline); }
+.photo-caption-title { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+.photo-index { color: var(--muted); }
+
+.photo-dialog { width: min(1280px, calc(100vw - 32px)); max-width: none; max-height: calc(100svh - 32px); padding: var(--space-4) var(--space-5); border: 1px solid var(--hairline); border-radius: 2px; background: var(--bg); color: var(--text); overflow: auto; }
+.photo-dialog::backdrop { background: rgba(5, 7, 8, .86); }
+.photo-dialog-heading { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); margin-bottom: var(--space-3); }
+.photo-dialog-title { font-size: 20px; font-weight: 600; }
+.icon-button { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; min-height: 40px; }
+.icon-button:hover { color: var(--accent); }
+.photo-enlarged { width: 100%; height: auto; max-height: calc(100svh - 170px); object-fit: contain; }
+.photo-dialog-caption { margin-top: var(--space-3); text-align: center; color: var(--muted); }
+.gallery-end { display: grid; justify-items: center; gap: var(--space-3); padding-block: var(--space-9) var(--space-6); }
+
+@media (max-width: 760px) {
+  .gallery-intro { padding-block: var(--space-6); }
+  .gallery-intro h1 { font-size: calc(var(--cell-2) / var(--pixel-grid)); }
+  .gallery-collection { gap: var(--space-7); }
+  .photograph-left, .photograph-right, .photograph-closing { width: 100%; }
+  .photo-dialog { padding: var(--space-3); }
+}
+
+/* Portrait-format photographs and side-by-side pairs. */
+.photograph-portrait { width: 52%; align-self: center; }
+.photo-pair { display: flex; gap: var(--space-5); align-items: flex-start; }
+/* Grow each photograph by its aspect ratio so both share one height. */
+.photo-pair .photograph { flex: var(--ratio, 1.5) 1 0; }
+@media (max-width: 760px) {
+  .photograph-portrait { width: 100%; }
+  .photo-pair { flex-direction: column; gap: var(--space-7); }
+}

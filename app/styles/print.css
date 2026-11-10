@@ -1,0 +1,13 @@
+@media print {
+  :root { --bg: #fff; --text: #000; --muted: #333; --hairline: #bbb; --accent: #000; --surface: #fff; }
+  .site-nav, .skip-link, .ecg-divider, .night-lab, .course-filter, .pub-actions, .hobbies, .print, .site-footer, .gallery-end, .photo-expand { display: none !important; }
+  .hero { display: block; padding: 0; }
+  .card, .timeline-row, .pub, .photograph { break-inside: avoid; }
+  .card-grid { display: block; }
+  .card { border: 0; padding: 0 0 12pt; }
+  .pixel-object { display: none; }
+  .wide { padding-inline: 0; max-width: none; }
+  details { display: block; }
+  section { margin-top: 18pt; }
+  .photograph { width: 100% !important; }
+}

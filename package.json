@@ -9,6 +9,7 @@
     "dev": "vinext dev",
     "build": "vinext build && node scripts/prepare-static.mjs",
     "start": "vinext start",
+    "pixel": "node pixel-src/bake.mjs",
     "lint": "oxlint",
     "format": "oxfmt"
   },
