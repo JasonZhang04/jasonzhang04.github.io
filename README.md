@@ -31,7 +31,7 @@ Build: `npm run build`. Static public output is `dist/client/`.
 | Title, description, social metadata | `app/layout.tsx` |
 | Scene speech bubbles, agent links, greeting, frame rate, layer list | `public/js/pixel/config.js` |
 
-`public/profile.jpeg` is the academic portrait. About shows it as a monochrome pixel drawing, `public/pixel/portrait-mono-light.png` and `-dark.png`, and fades to the photo on hover. `public/profile_avatar.jpeg` is the painted portrait; a small copy appears in Contact. No clinical datasets or private application materials belong in `public/`. All medical imagery on the site is original pixel illustration, never patient data.
+`public/profile.jpeg` is the academic portrait, shown as is in About; CSS frames it to the sitter. `public/profile_avatar.jpeg` is the painted portrait; a small copy appears in Contact. No clinical datasets or private application materials belong in `public/`. All medical imagery on the site is original pixel illustration, never patient data.
 
 ### Adding a photograph
 
@@ -59,7 +59,6 @@ Art is authored as code in `pixel-src/`, baked to indexed PNGs in `public/pixel/
 
 ```
 npm run pixel                             # scene layers, fallback frame, objects, portrait, favicons
-python3 pixel-src/mono_portrait.py        # monochrome portrait drawing from public/profile.jpeg (Pillow)
 python3 pixel-src/make_og.py              # public/og.png (Pillow, fonttools, brotli)
 python3 pixel-src/prepare_photos.py       # web copies of gallery photos (Pillow)
 node pixel-src/preview-scene.mjs out.png 60 6        # scene at frame 60, 6x, with coverage figures

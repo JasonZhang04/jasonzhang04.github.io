@@ -13,7 +13,7 @@ import { PixelObject } from '@/components/pixel-object';
 import { PixelIcon } from '@/components/pixel-icon';
 import { EcgDivider } from '@/components/ecg-divider';
 import { SectionHeading } from '@/components/section-heading';
-import { MonoPortrait } from '@/components/mono-portrait';
+import { ProfilePhoto } from '@/components/profile-photo';
 import { LabText } from '@/components/lab-text';
 import { CourseTable } from '@/components/course-table';
 
@@ -55,7 +55,7 @@ export default function Home() {
       <section id="about" className="about wide" aria-labelledby="about-title">
         <SectionHeading label="00 / About" title="Hello, I’m Chenjia" id="about-title" />
         <div className="about-grid">
-          <MonoPortrait />
+          <ProfilePhoto />
           <div className="about-copy">
             <p className="about-lead">{profile.introduction}</p>
             <p><LabText text={profile.researchIntro} /></p>

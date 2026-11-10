@@ -33,7 +33,7 @@ export const viewport: Viewport = {
 
 // Runs before first paint: restores a saved theme to prevent a flash, and picks sizes
 // that land on whole device pixels so pixel type and sprites stay crisp at any zoom.
-const bootScript = `(function(){var e=document.documentElement;e.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')e.setAttribute('data-theme',t)}catch(n){}var r=window.devicePixelRatio||1,c=function(n){return Math.max(1,Math.round(n*r))/r+'px'},s=e.style;s.setProperty('--u',c(2));s.setProperty('--cell-1',c(1));s.setProperty('--cell-2',c(2));s.setProperty('--cell-3',c(3));s.setProperty('--cell-h2',r<=1?'1px':Math.max(2,Math.round(1.5*r))/r+'px');var q=1.5*r;if(Math.abs(q-Math.round(q))<.01||r>=3)e.classList.add('crisp-portrait')})();`;
+const bootScript = `(function(){var e=document.documentElement;e.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')e.setAttribute('data-theme',t)}catch(n){}var r=window.devicePixelRatio||1,c=function(n){return Math.max(1,Math.round(n*r))/r+'px'},s=e.style;s.setProperty('--u',c(2));s.setProperty('--cell-1',c(1));s.setProperty('--cell-2',c(2));s.setProperty('--cell-3',c(3));s.setProperty('--cell-h2',r<=1?'1px':Math.max(2,Math.round(1.5*r))/r+'px')})();`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

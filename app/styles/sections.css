@@ -23,8 +23,11 @@
 }
 @media (max-width: 760px) {
   .about-grid { grid-template-columns: minmax(0, 1fr); }
-  .mono-portrait { margin-inline: auto; }
+  .profile-photo { margin-inline: auto; }
 }
+/* The original photo, framed to the sitter: source pixels 88,56 to 456,552 of public/profile.jpeg. */
+.profile-photo { position: relative; width: 264px; max-width: 100%; aspect-ratio: 368 / 496; overflow: hidden; border: 1px solid var(--hairline); border-radius: 2px; background: #fff; }
+.profile-photo img { position: absolute; max-width: none; width: calc(533 / 368 * 100%); left: calc(-88 / 368 * 100%); top: calc(-56 / 496 * 100%); }
 
 /* Timeline */
 .timeline { border-bottom: 1px solid var(--hairline); }
