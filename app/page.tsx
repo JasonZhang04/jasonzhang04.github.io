@@ -308,10 +308,11 @@ export default function Home() {
       <EcgDivider at={30} />
 
       <section id="blog" className="wide" aria-labelledby="blog-title">
-        <SectionHeading label="Blog" title="Notes in progress" note="Coming soon, peer review not required" id="blog-title" />
-        <p className="blog-lede">Inspirations, early findings, and research experiences that are worth writing down before they are ready to be a paper.</p>
-        {posts.length ? <PostList posts={posts.slice(0, 3)} /> : <p className="blog-empty">No posts yet. The first ones are still at the “promising preliminary results” stage.</p>}
-        <a className="text-link" href="/blog/">{posts.length > 3 ? `All ${posts.length} posts` : 'Visit the blog'} <PixelIcon name="arrow-up-right" /></a>
+        <SectionHeading label="Blog" title="Notes in progress" id="blog-title" />
+        {posts.length > 0 && <>
+          <PostList posts={posts.slice(0, 3)} />
+          <a className="text-link" href="/blog/">{posts.length > 3 ? `All ${posts.length} posts` : 'Visit the blog'} <PixelIcon name="arrow-up-right" /></a>
+        </>}
       </section>
     </main>
     <div className="wide"><SiteFooter note="© 2026 Chenjia Zhang · Last updated November 2026" /></div>

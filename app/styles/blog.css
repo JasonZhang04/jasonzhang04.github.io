@@ -1,13 +1,7 @@
 /* Blog: index, home section and post pages. */
-.blog-lede { max-width: var(--text-col); color: var(--muted); margin-bottom: var(--space-5); }
-.blog-empty { padding-block: var(--space-4); margin-bottom: var(--space-5); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; color: var(--muted); }
 #blog > .text-link { margin-top: var(--space-2); }
 .blog-index, .post-page { padding-block: var(--space-8) var(--space-6); }
 .blog-index h1, .post-page h1 { margin-block: var(--space-3) var(--space-5); font-size: calc(var(--cell-2) / var(--pixel-grid)); text-wrap: balance; }
-.blog-kinds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: var(--text-col); margin-bottom: var(--space-6); border-top: 1px solid var(--hairline); }
-.blog-kinds div { padding: var(--space-3) var(--space-4) var(--space-3) 0; border-bottom: 1px solid var(--hairline); }
-.blog-kinds dt { font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; color: var(--accent); }
-.blog-kinds dd { font-size: 15px; color: var(--muted); }
 
 .post-list { border-top: 1px solid var(--hairline); margin-bottom: var(--space-5); }
 .post-list li { display: grid; gap: var(--space-1); padding-block: var(--space-4); border-bottom: 1px solid var(--hairline); }
@@ -38,4 +32,4 @@
 .prose hr { border: 0; border-top: 1px solid var(--hairline); margin-block: var(--space-7); }
 .prose table { border-collapse: collapse; font-size: 16px; }
 .prose th, .prose td { padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--hairline); text-align: left; }
-@media (max-width: 640px) { .blog-kinds { grid-template-columns: minmax(0, 1fr); } .prose { font-size: 17px; } .blog-index h1, .post-page h1 { font-size: calc(var(--cell-1) / var(--pixel-grid) * 1.5); } }
+@media (max-width: 640px) { .prose { font-size: 17px; } .blog-index h1, .post-page h1 { font-size: calc(var(--cell-1) / var(--pixel-grid) * 1.5); } }
