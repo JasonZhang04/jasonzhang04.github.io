@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compose public/og.png: name, research line, portrait sprite and a crop of the night lab.
+"""Compose public/og.png: name, research line and a crop of the night lab.
 
 Usage (requires Pillow, fonttools, brotli): python3 pixel-src/make_og.py
 Run after `npm run pixel`. Uses only the fonts in public/fonts.
@@ -45,14 +45,9 @@ def main():
     draw.fontmode = 'L'
     sans = font('public/fonts/Geist-Variable.woff2', 25, [400])
     mono = font('public/fonts/GeistMono-Variable.woff2', 18, [400])
-    draw.text((66, 316), 'Machine learning for healthcare', font=sans, fill=TEXT)
-    draw.text((66, 350), 'Multi-agent systems', font=sans, fill=TEXT)
+    draw.text((66, 316), 'Intelligent agents', font=sans, fill=TEXT)
+    draw.text((66, 350), 'Machine learning for healthcare', font=sans, fill=TEXT)
     draw.text((66, 408), 'JOHNS HOPKINS UNIVERSITY', font=mono, fill=ACCENT)
-
-    # Portrait sprite at integer scale, standing on the lower edge of the card.
-    sprite = Image.open('public/pixel/portrait.png').convert('RGBA').crop((0, 32, 32, 64))
-    big = sprite.resize((32 * 4, 32 * 4), Image.NEAREST)
-    card.paste(big, (66, H - big.height), big)
 
     card = card.convert('P', palette=Image.ADAPTIVE, colors=64)
     card.save('public/og.png', optimize=True)

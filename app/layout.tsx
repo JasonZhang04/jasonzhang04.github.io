@@ -5,7 +5,7 @@ import { SITE_URL, IS_PUBLIC, absolute } from '@/lib/site';
 export const metadata: Metadata = {
   metadataBase: new URL(`${SITE_URL}/`),
   title: 'Chenjia Zhang | Research & Academic Profile',
-  description: 'Chenjia Zhang, Johns Hopkins undergraduate researcher. Machine learning for healthcare, multi-agent communication, optimization, and embodied intelligence.',
+  description: 'Chenjia Zhang, Johns Hopkins undergraduate researcher working on intelligent agents, and machine learning and data science for healthcare: multimodal agentic systems and their applications in clinical care and personal health.',
   icons: {
     icon: [
       { url: '/pixel/favicon-32.png', sizes: '32x32', type: 'image/png' },
@@ -16,12 +16,12 @@ export const metadata: Metadata = {
   robots: IS_PUBLIC ? { index: true, follow: true } : { index: false, follow: false },
   openGraph: {
     title: 'Chenjia Zhang',
-    description: 'Machine learning for healthcare · Multi-agent systems',
+    description: 'Intelligent agents · Machine learning for healthcare',
     type: 'website',
     url: `${SITE_URL}/`,
-    images: [{ url: absolute('/og.png'), width: 1200, height: 630, alt: 'Chenjia Zhang: machine learning for healthcare and multi-agent systems, beside a pixel-art night lab.' }],
+    images: [{ url: absolute('/og.png'), width: 1200, height: 630, alt: 'Chenjia Zhang: intelligent agents and machine learning for healthcare, beside a pixel-art night lab.' }],
   },
-  twitter: { card: 'summary_large_image', images: [absolute('/og.png')], title: 'Chenjia Zhang', description: 'Machine learning for healthcare · Multi-agent systems' },
+  twitter: { card: 'summary_large_image', images: [absolute('/og.png')], title: 'Chenjia Zhang', description: 'Intelligent agents · Machine learning for healthcare' },
 };
 
 export const viewport: Viewport = {

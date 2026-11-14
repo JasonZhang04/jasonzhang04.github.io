@@ -9,7 +9,7 @@ const LINKS = [
   ['Background', '#experience'],
 ] as const;
 
-export function SiteHeader({ photography = false, offHome = false }: { photography?: boolean; offHome?: boolean }) {
+export function SiteHeader({ photography = false, offHome = false, current }: { photography?: boolean; offHome?: boolean; current?: 'blog' }) {
   const base = photography || offHome ? '/' : '';
   return (
     <header className="site-nav" data-site-nav suppressHydrationWarning>
@@ -23,6 +23,7 @@ export function SiteHeader({ photography = false, offHome = false }: { photograp
           {LINKS.map(([label, hash]) => <a key={hash} href={`${base}${hash}`}>{label}</a>)}
           <a href="/photography/" aria-current={photography ? 'page' : undefined}>Photos</a>
           <a href={`${base}#contact`}>Contact</a>
+          <a href="/blog/" aria-current={current === 'blog' ? 'page' : undefined}>Blog</a>
         </nav>
         <button className="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme" suppressHydrationWarning>
           <PixelIcon name="tube-on" className="icon-when-dark" />

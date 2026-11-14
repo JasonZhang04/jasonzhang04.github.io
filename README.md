@@ -21,6 +21,7 @@ Build: `npm run build`. Static public output is `dist/client/`.
 | Lab names and links (linked wherever the names appear) | `lib/labs.ts` |
 | Courses, their areas, and links to related work | `lib/courses.ts` |
 | Quote and favorites in "Other things" | `lib/other-things.ts` |
+| Blog posts | `content/blog/*.md` |
 | Timeline and honors, section order | `app/page.tsx` |
 | Which pixel object goes with which entry; hobbies | `lib/site-art.ts` |
 | Gallery photos, titles, alt text, order, and the photo featured on the main page | `lib/photography.ts` |
@@ -36,6 +37,10 @@ Build: `npm run build`. Static public output is `dist/client/`.
 ### Adding a photograph
 
 Put the full-resolution original in `photo-originals/`. That folder is git-ignored, so originals never enter the repository or the build. Run `python3 pixel-src/prepare_photos.py`, which writes a 2000px copy and an 800px phone copy to `public/photos/`, converted to sRGB. It also prints the `src`, `small`, width and height to copy into a new entry in `lib/photography.ts`. Give the entry a unique `id`, a title, and meaningful alt text. Array order controls viewing order, and counters update automatically. `layout` may be `wide`, `left`, `right`, `closing`, `portrait`, or `pair`; two consecutive `pair` photos share a row. To change the photo framed on the main page, edit `featuredPhoto` at the end of the same file. Original images are not retouched or cropped.
+
+### Writing a blog post
+
+Copy `content/blog/_template.md` to a new file named like `2026-11-20-first-note.md` and write in Markdown. The part after the date becomes the address, `/blog/first-note/`. Set `kind` to `Note` for thoughts and inspirations or `Research log` for early findings. Files starting with an underscore, and posts with `draft: true`, are never published. Images go in `public/blog/`. Commit and push to `main` to publish; the newest three posts also appear at the end of the home page.
 
 ### Adding a course website
 

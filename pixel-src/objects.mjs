@@ -528,6 +528,50 @@ function bugs(g, f) {
   tag.forEach((r, j) => r.split('').forEach((p, i) => { if (p === '#') g.set(37 + i, 1 + j, f >= 2 ? C2 : C1); }));
 }
 
+function noodleBowl(g, f) {
+  // Steam rises on hover.
+  const steam = [[], [[17, 9], [16, 7], [17, 5]], [[17, 8], [18, 6], [17, 4], [29, 8], [28, 6]], [[18, 7], [17, 5], [29, 7], [30, 5], [23, 5], [24, 3]]][f];
+  for (const [x, y] of steam) { g.set(x, y, S6); g.set(x, y + 1, S5); }
+  // Bowl body: a wide shallow bowl with a foot.
+  g.disc(24, 30, 18, 11, V0);
+  g.disc(24, 29, 18, 10, S6);
+  g.rect(6, 22, 37, 8, T);
+  for (let y = 23; y < 30; y++) for (let x = 6; x < 43; x++) if (((x - 24) / 18) ** 2 + ((y - 29) / 10) ** 2 <= 1) g.set(x, y, x < 24 ? S6 : S5);
+  for (let x = 8; x < 41; x++) if (x % 5 === 0) g.set(x, 31 + Math.round(Math.abs(x - 24) / 9), C1);
+  g.rect(17, 38, 14, 3, S5); g.hline(17, 38, 14, S6);
+  // Rim and broth.
+  g.disc(24, 22, 19, 6, S7);
+  g.disc(24, 22, 17, 5, O0);
+  g.disc(24, 21.5, 15, 3.6, O1);
+  // Noodles, scallion, a soft egg.
+  for (const y of [21, 23]) for (let x = 12; x < 34; x++) if (Math.sin(x * 0.9 + y) > 0.2) g.set(x, y, S7);
+  for (const [x, y] of [[14, 20], [19, 24], [28, 20], [31, 23], [22, 19]]) g.set(x, y, M1);
+  g.disc(31, 21, 3, 2, S7); g.disc(31, 21, 1.2, 1, O1);
+  // Chopsticks resting across the rim.
+  g.line(14, 18, 44, 4, O0); g.line(15, 19, 44, 5, S5);
+}
+
+function headphones(g, f) {
+  // Notes float up on hover.
+  const notes = [[], [[36, 11]], [[36, 9], [10, 12]], [[37, 7], [9, 10], [24, 3]]][f];
+  for (const [x, y] of notes) { g.rect(x, y, 2, 2, x > 30 ? C1 : V1); g.vline(x + 1, y - 4, 4, x > 30 ? C1 : V1); g.set(x + 2, y - 4, x > 30 ? C1 : V1); }
+  // Headband.
+  for (let t = 0; t <= 60; t++) {
+    const a = Math.PI + (Math.PI * t) / 60;
+    const x = Math.round(24 + Math.cos(a) * 15), y = Math.round(28 + Math.sin(a) * 16);
+    g.rect(x - 1, y, 3, 3, S3); g.set(x, y, S6);
+  }
+  g.rect(18, 11, 12, 2, S5);
+  // Ear cups.
+  for (const [x, mirror] of [[6, false], [33, true]]) {
+    g.rect(x, 26, 9, 14, VIOLET[1]);
+    g.rect(x + (mirror ? 0 : 6), 27, 3, 12, S2);
+    g.rect(x + 2, 27, 5, 12, mirror ? S4 : S6);
+    g.vline(x + (mirror ? 8 : 0), 26, 14, mirror ? S3 : S7);
+    g.set(x + 4, 33, f % 2 ? S4 : M1);
+  }
+}
+
 export const OBJECTS = [
   { id: 'ecg-cart', draw: ecgCart },
   { id: 'lightbox', draw: lightbox },
@@ -548,6 +592,8 @@ export const OBJECTS = [
   { id: 'gamepad', draw: gamepad },
   { id: 'crt-tv', draw: crtTv },
   { id: 'bugs', draw: bugs },
+  { id: 'noodle-bowl', draw: noodleBowl },
+  { id: 'headphones', draw: headphones },
 ];
 
 export const FRAMES = 4;

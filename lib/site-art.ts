@@ -4,7 +4,7 @@ export const OBJECT_INDEX = {
   'ecg-cart': 0, lightbox: 1, ultrasound: 2, 'ehr-terminal': 3, agents: 4,
   'home-robot': 5, 'robot-arm': 6, 'video-pose': 7, 'ar-headset': 8,
   camera: 9, watercolor: 10, easel: 11, racket: 12, bicycle: 13, basketball: 14,
-  clapper: 15, gamepad: 16, 'crt-tv': 17, bugs: 18,
+  clapper: 15, gamepad: 16, 'crt-tv': 17, bugs: 18, 'noodle-bowl': 19, headphones: 20,
 } as const;
 
 /** Number of objects in the atlas, which sets its height in CSS. */

@@ -1,7 +1,9 @@
 // Draft copy: source mapping and review items in docs/CONTENT_REVIEW.md.
 export const profile = {
  name: 'Chenjia Zhang', email: 'czhan182@jh.edu', github: 'https://github.com/JasonZhang04',
- introduction: 'I’m a senior at Johns Hopkins University studying Applied Mathematics & Statistics and Computer Science with a minor in Visual Arts. My work spans machine learning for healthcare and intelligent agents. Outside of research, I am interested in various art forms, including photography, watercolor, and oil painting. I also really enjoy playing tennis, biking, basketball, and a variety of other sports.',
+ introduction: 'I’m a senior at Johns Hopkins University studying Applied Mathematics & Statistics and Computer Science with a minor in Visual Arts. My work spans two areas: intelligent agents, and machine learning and data science for healthcare.',
+ researchInterest: 'I am interested in tackling problems in multimodal agentic systems, including communication structure, memory management, and long-horizon reasoning across modalities, and in how such systems can be applied in healthcare, both in clinical settings for doctors and as AI health teams that support patients and the general public.',
+ outside: 'Outside of research, I am interested in various art forms, including photography, watercolor, and oil painting. I also really enjoy playing tennis, biking, basketball, and a variety of other sports.',
  researchIntro: 'I am very fortunate to work with professors from various disciplines on a wide range of research projects at Hopkins. Currently, I work with Professor Tianmin Shu in the SCAI Lab on multi-agent communication and optimization. I also work on multimodal cardiovascular prediction with Professor Robert Stevens in the LCICM lab and pregnancy-related real-world data research with Professor Casey Taylor in the TIRI Lab.',
 };
 export const research = [

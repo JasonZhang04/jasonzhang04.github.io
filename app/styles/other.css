@@ -20,7 +20,11 @@
 .quote-card blockquote p { font-size: clamp(22px, 2.6vw, 30px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; text-wrap: balance; }
 .quote-card figcaption { grid-column: 2; margin-top: var(--space-2); font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; color: var(--muted); }
 .quote-card:hover .pixel-object { animation: object-play 600ms steps(3, end) 1 forwards; }
-.faves { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); margin-top: var(--space-5); }
+.faves { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--space-5); margin-top: var(--space-5); }
+/* Five lists: three across, then two wider ones. */
+.fave { grid-column: span 2; }
+.fave:nth-child(n + 4) { grid-column: span 3; }
+.fave-detail { display: block; font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; color: var(--muted); }
 .fave { display: grid; align-content: start; gap: var(--space-3); padding: var(--space-5); border: 1px solid var(--hairline); border-radius: 2px; transition: border-color 150ms var(--ease); }
 .fave:hover { border-color: var(--accent); }
 .fave:hover .pixel-object { animation: object-play 480ms steps(3, end) 1; }
@@ -28,5 +32,5 @@
 .fave li { display: flex; gap: var(--space-3); align-items: baseline; padding-block: var(--space-2); border-bottom: 1px solid var(--hairline); }
 .fave-index { font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; color: var(--accent); }
 .fave-note { font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em; color: var(--muted); }
-@media (max-width: 960px) { .faves { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 960px) { .faves { grid-template-columns: minmax(0, 1fr); } .fave, .fave:nth-child(n + 4) { grid-column: auto; } }
 @media (max-width: 520px) { .quote-card { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-3); } .quote-card figcaption { grid-column: 1; } }

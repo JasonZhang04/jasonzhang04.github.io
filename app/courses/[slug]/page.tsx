@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const course = courses.find((c) => c.slug === slug);
   return {
-    title: course ? `${course.name} | Coursework | Chenjia Zhang` : 'Coursework | Chenjia Zhang',
+    title: course ? `${course.name} | Selected coursework | Chenjia Zhang` : 'Selected coursework | Chenjia Zhang',
     description: course ? `${course.name}, a ${AREAS[course.area].name} course Chenjia Zhang took at Johns Hopkins University.` : undefined,
   };
 }
@@ -28,7 +28,7 @@ export default async function CoursePage({ params }: Props) {
     <a className="skip-link" href="#course-main">Skip to course</a>
     <SiteHeader offHome />
     <main id="course-main" className="course-page wide">
-      <p className="meta-label"><a href="/courses/">Coursework</a> / {area.name} / {course.code}</p>
+      <p className="meta-label"><a href="/courses/">Selected coursework</a> / {area.name} / {course.code}</p>
       <h1>{course.name}</h1>
       <dl className="course-facts">
         <div><dt>Area</dt><dd>{area.name}</dd></div>
@@ -65,7 +65,7 @@ export default async function CoursePage({ params }: Props) {
         </section>
       )}
 
-      <a className="text-link course-back" href="/courses/"><PixelIcon name="arrow-left" /> All coursework</a>
+      <a className="text-link course-back" href="/courses/"><PixelIcon name="arrow-left" /> All selected coursework</a>
     </main>
     <div className="wide"><SiteFooter note="© 2026 Chenjia Zhang" /></div>
   </>;

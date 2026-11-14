@@ -4,6 +4,8 @@ import { featuredPhoto, photographs } from '@/lib/photography';
 import { quote, favorites } from '@/lib/other-things';
 import { courses } from '@/lib/courses';
 import { slugify } from '@/lib/slug';
+import { getPosts } from '@/lib/blog';
+import { PostList } from '@/components/post-list';
 import { smallerProjects } from '@/lib/smaller-projects';
 import { researchArt, projectArt, hobbies } from '@/lib/site-art';
 import { SiteHeader } from '@/components/site-header';
@@ -25,6 +27,7 @@ const TIMELINE: { date: string; sub?: string; title: string; role: string; detai
 ];
 
 export default function Home() {
+  const posts = getPosts();
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <SiteHeader />
@@ -34,10 +37,10 @@ export default function Home() {
           <p className="meta-label">Research &amp; Academic Profile</p>
           <h1 id="hero-name">Chenjia<br />Zhang</h1>
           <p className="hero-tagline">Learning from data. <em>Understanding intelligence.</em></p>
-          <p className="hero-summary">My work spans machine learning for healthcare and intelligent agents.</p>
+          <p className="hero-summary">My work spans two areas: intelligent agents, and machine learning and data science for healthcare.</p>
           <dl className="hero-status">
             <div><dt>Now</dt><dd>Undergraduate researcher<br />Johns Hopkins University</dd></div>
-            <div><dt>Focus</dt><dd>Healthcare ML / Multi-agent systems</dd></div>
+            <div><dt>Focus</dt><dd>Multimodal agentic systems / AI for healthcare</dd></div>
             <div><dt>Degree</dt><dd>B.S. expected May 2027</dd></div>
             <div><dt>Based</dt><dd>Baltimore, Maryland</dd></div>
           </dl>
@@ -58,7 +61,9 @@ export default function Home() {
           <ProfilePhoto />
           <div className="about-copy">
             <p className="about-lead">{profile.introduction}</p>
+            <p>{profile.researchInterest}</p>
             <p><LabText text={profile.researchIntro} /></p>
+            <p>{profile.outside}</p>
           </div>
           <aside className="glance" aria-label="Profile at a glance">
             <p className="meta-label">At a glance</p>
@@ -199,7 +204,7 @@ export default function Home() {
                 <h3><LabText text={row.title} /></h3>
                 <p>{row.role}</p>
                 <p className="timeline-detail">{row.detail}</p>
-                {row.coursework && <a className="text-link timeline-coursework" href="#coursework">{courses.length} courses <PixelIcon name="arrow-down" /></a>}
+                {row.coursework && <a className="text-link timeline-coursework" href="#coursework">Selected coursework <PixelIcon name="arrow-down" /></a>}
               </div>
             </div>
           ))}
@@ -213,7 +218,7 @@ export default function Home() {
         </div>
         <details className="coursework" id="coursework">
           <summary>
-            <span className="coursework-title">Coursework</span>
+            <span className="coursework-title">Selected coursework</span>
             <span className="coursework-count">{courses.length} courses · {courses.filter((c) => c.area === 'ai').length} AI · {courses.filter((c) => c.area === 'ams').length} AMS · {courses.filter((c) => c.area === 'cs').length} CS</span>
             <span className="coursework-toggle" aria-hidden="true" />
           </summary>
@@ -277,7 +282,10 @@ export default function Home() {
             <section className="fave" key={f.title} aria-labelledby={`fave-${slugify(f.title)}`}>
               <PixelObject name={f.object} label={f.label} />
               <h3 id={`fave-${slugify(f.title)}`}>{f.title}</h3>
-              <ol>{f.items.map((item, i) => <li key={item}><span className="fave-index">{String(i + 1).padStart(2, '0')}</span>{item}</li>)}</ol>
+              <ol>{f.items.map((item, i) => {
+                const { name, detail } = typeof item === 'string' ? { name: item, detail: undefined } : item;
+                return <li key={name}><span className="fave-index">{String(i + 1).padStart(2, '0')}</span><span>{name}{detail && <span className="fave-detail">{detail}</span>}</span></li>;
+              })}</ol>
               <p className="fave-note">{f.note}</p>
             </section>
           ))}
@@ -295,6 +303,15 @@ export default function Home() {
             <a className="text-link" href={profile.github} target="_blank" rel="noreferrer"><PixelIcon name="code" /> GitHub <PixelIcon name="arrow-up-right" /></a>
           </div>
         </div>
+      </section>
+
+      <EcgDivider at={30} />
+
+      <section id="blog" className="wide" aria-labelledby="blog-title">
+        <SectionHeading label="Blog" title="Notes in progress" note="Coming soon, peer review not required" id="blog-title" />
+        <p className="blog-lede">Inspirations, early findings, and research experiences that are worth writing down before they are ready to be a paper.</p>
+        {posts.length ? <PostList posts={posts.slice(0, 3)} /> : <p className="blog-empty">No posts yet. The first ones are still at the “promising preliminary results” stage.</p>}
+        <a className="text-link" href="/blog/">{posts.length > 3 ? `All ${posts.length} posts` : 'Visit the blog'} <PixelIcon name="arrow-up-right" /></a>
       </section>
     </main>
     <div className="wide"><SiteFooter note="© 2026 Chenjia Zhang · Last updated November 2026" /></div>
